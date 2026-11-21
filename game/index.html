@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Double Take — Spot the Difference</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">&#9678;&#9678;</span>
+      <span class="brand-name">DOUBLE TAKE</span>
+      <span class="brand-sub">Spot the Difference</span>
+    </div>
+    <div class="top-stats">
+      <div class="stat"><span class="stat-label">SCORE</span><span id="scoreValue" class="stat-value">0</span></div>
+      <div class="stat"><span class="stat-label">BEST</span><span id="bestValue" class="stat-value">0</span></div>
+      <button id="soundButton" class="icon-button" type="button" title="Sound on/off (M)">&#128266;</button>
+      <button id="menuButton" class="icon-button" type="button" title="Menu (Esc)">&#9776;</button>
+    </div>
+  </header>
+
+  <section id="hud">
+    <div class="hud-left">
+      <span id="sceneName" class="scene-name">Sunny Park</span>
+      <span id="sceneDots" class="scene-dots" aria-label="Scene progress"></span>
+    </div>
+    <div class="hud-timer">
+      <div id="timerBar" class="timer-bar"><div id="timerFill" class="timer-fill"></div></div>
+      <span id="timerText" class="timer-text">1:30</span>
+    </div>
+    <div class="hud-right">
+      <span id="foundCounter" class="found-counter">Found 0 / 5</span>
+      <button id="hintButton" class="hint-button" type="button" title="Hint (H) — highlights one difference left">&#128161; Hint <span id="hintCount">3</span></button>
+    </div>
+  </section>
+
+  <main id="boards">
+    <figure class="panel">
+      <figcaption><span class="panel-tag">A</span> Original</figcaption>
+      <canvas id="leftCanvas" width="640" height="400"></canvas>
+    </figure>
+    <div id="versus" aria-hidden="true">VS</div>
+    <figure class="panel">
+      <figcaption><span class="panel-tag">B</span> Spot the changes</figcaption>
+      <canvas id="rightCanvas" width="640" height="400"></canvas>
+    </figure>
+  </main>
+
+  <footer id="foundStrip">
+    <span class="strip-label">Found:</span>
+    <span id="foundChips" class="found-chips"><em class="strip-empty">Nothing yet — look closely…</em></span>
+    <span id="streakBadge" class="streak-badge" hidden>Streak x2</span>
+  </footer>
+</div>
+
+<div id="menuOverlay" class="overlay">
+  <div class="overlay-card menu-card">
+    <h1>DOUBLE TAKE</h1>
+    <p class="tagline">Two pictures. Almost the same. <strong>Not quite.</strong></p>
+    <p class="howto">Click a difference on <strong>either</strong> picture to circle it. Find them all before the clock runs out. A wrong click costs 25 points — a hint costs 50.</p>
+    <div id="sceneCards" class="scene-cards"></div>
+    <button id="playAllButton" class="primary-button" type="button">Play all three scenes &#9654;</button>
+    <p class="fineprint">Original art, drawn in code. No two scenes play the same.</p>
+  </div>
+</div>
+
+<div id="sceneOverlay" class="overlay" hidden>
+  <div class="overlay-card">
+    <div id="sceneStars" class="stars" aria-label="Stars earned">&#9733;&#9733;&#9733;</div>
+    <h2 id="sceneResultTitle">Scene complete!</h2>
+    <p id="sceneResultText" class="result-text"></p>
+    <div id="sceneResultStats" class="result-stats"></div>
+    <button id="nextSceneButton" class="primary-button" type="button">Next scene &#9654;</button>
+    <button id="replaySceneButton" class="ghost-button" type="button">Replay this scene</button>
+  </div>
+</div>
+
+<div id="endOverlay" class="overlay" hidden>
+  <div class="overlay-card">
+    <div class="stars" aria-label="Final stars">&#127942;</div>
+    <h2 id="endTitle">You cleared every scene!</h2>
+    <p id="endText" class="result-text"></p>
+    <div id="endStats" class="result-stats"></div>
+    <button id="playAgainButton" class="primary-button" type="button">Play again &#8635;</button>
+    <button id="endMenuButton" class="ghost-button" type="button">Back to menu</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="scenes.js"></script>
+<script src="differences.js"></script>
+<script src="render.js"></script>
+<script src="audio.js"></script>
+<script src="ui.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
